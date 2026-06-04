@@ -10,7 +10,6 @@
         (at ?c - character ?l - location)
         (connected ?l1 - location ?l2 - location)
         
-        (explored ?l - location)
         (locked ?l - location)
         (key-for ?i - item ?l - location)
 
@@ -28,22 +27,12 @@
         (is-hostile ?c - character)
     )
 
-    (:action scout
-        :parameters (?p - player ?from - location ?to - location)
-        :precondition (and 
-            (at ?p ?from)
-            (connected ?from ?to)
-            (not (explored ?to))
-        )
-        :effect (explored ?to)
-    )
 
     (:action unlock
         :parameters (?p - player ?from - location ?to - location ?k - item)
         :precondition (and
             (at ?p ?from)
             (connected ?from ?to)
-            (explored ?to)
             (locked ?to)
             (has ?p ?k)
             (key-for ?k ?to)
@@ -58,7 +47,6 @@
         :precondition (and
             (at ?p ?from)
             (connected ?from ?to)
-            (explored ?to)
             (not (locked ?to))
         )
         :effect (and
