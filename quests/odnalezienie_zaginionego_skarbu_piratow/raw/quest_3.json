@@ -1,0 +1,39 @@
+{
+  "locations": {
+    "fortress_treasure": {
+      "name": "Fortress Treasure",
+      "description": "A fortified fortress with a secret vault where the treasure is kept safe from thieves and pirates.",
+      "image_prompt": "ancient stone castle, dark and ominous"
+    },
+    "island_of_enigmas": {
+      "name": "Island of Enigmas",
+      "description": "The island Alden has been exploring. It's full of mysteries waiting to be solved.",
+      "image_prompt": "mysterious island at sea, foggy night"
+    }
+  },
+  "items": {
+    "treasure_chest_locked": {
+      "name": "Treasure Chest (Locked)",
+      "description": "The chest is sealed with a magical lock that only the bravest and most cunning can open.",
+      "image_prompt": "locked treasure chest, glistening in sunlight"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young adventurer on his quest to find and protect the hidden treasure. He has a magical key from the shipwreck.",
+      "image_prompt": "young adventurer exploring, fantasy style"
+    },
+    "treasure_guard": {
+      "name": "Captain Blackbeard's Revenge",
+      "description": "The pirate who once hid this treasure now lives in seclusion in the fortress. He is not pleased to see Alden and won't let him pass.",
+      "image_prompt": "dangerous pirate captain with black beard, dark castle",
+      "dialogues": {
+        "before_talk": "Treasure Guard: You are not welcome here! This place belongs to me now...",
+        "after_talk": "Captain Blackbeard's Revenge: I will show you the error of your ways... but it won't be easy.",
+        "after_satisfied": "Captain Blackbeard's Revenge: Very well, you have shown courage. Now leave before I punish you!",
+        "hostile": "Captain Blackbeard's Revenge: How dare you enter this place? Guards! Stop the intruder!"
+      }
+    }
+  }
+}

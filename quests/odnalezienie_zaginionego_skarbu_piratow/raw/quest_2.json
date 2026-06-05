@@ -1,0 +1,44 @@
+{
+  "locations": {
+    "island_of_enigmas": {
+      "name": "Island of Enigmas",
+      "description": "A mysterious island with ancient ruins and secret pathways.",
+      "image_prompt": "mysterious island at sea, foggy night"
+    },
+    "shipwreck": {
+      "name": "Shipwreck",
+      "description": "The ship that crashed near the island. Alden knows where it is from the map he found.",
+      "image_prompt": "drowned pirate ship, dark waters"
+    }
+  },
+  "items": {
+    "ancient_map": {
+      "name": "Ancient Map",
+      "description": "A detailed map of the islands and their secrets. It reveals where the treasure chest is hidden.",
+      "image_prompt": "old parchment map, pirate symbols"
+    },
+    "treasure_chest_unlocked": {
+      "name": "Treasure Chest (Unlocked)",
+      "description": "The chest is now unlocked, revealing its contents. This chest contains valuable artifacts and clues to the island's mysteries.",
+      "image_prompt": "open treasure chest with various objects inside"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young adventurer in search of the hidden treasure. He has a map showing the path to the island and is ready for an adventure.",
+      "image_prompt": "young adventurer exploring, fantasy style"
+    },
+    "siren_queen": {
+      "name": "Queen Sirena",
+      "description": "The siren queen who guards the ancient ruins on the island. She is known for her beautiful voice and deadly music.",
+      "image_prompt": "sexy sirens with golden hair, underwater kingdom",
+      "dialogues": {
+        "before_talk": "Siren: I have heard your bravery in the name of the village... may we make a deal? You get the treasure... but only if you sing for me.",
+        "after_talk": "Queen Sirena: Your voice is not good enough. Sing again!...",
+        "after_satisfied": "Queen Sirena: Good, you have won my trust. You can pass this island, but beware of those who try to take what does not belong to them.",
+        "hostile": "Queen Sirena: You insolent human! I will make sure you don't get any closer."
+      }
+    }
+  }
+}

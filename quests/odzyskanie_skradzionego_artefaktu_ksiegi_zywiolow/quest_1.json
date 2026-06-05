@@ -1,0 +1,39 @@
+{
+  "name": "Quest 1: Entrance to the Volcano",
+  "locations": {
+    "village": {
+      "name": "Village Square",
+      "description": "A quiet village square. Snow has begun to fall, and the villagers look worriedly at the frozen sky."
+    },
+    "cave-entrance": {
+      "name": "Volcanic Cave Entrance",
+      "description": "A heavy stone door covers the volcanic cave entrance, emitting a faint warmth. It is locked."
+    }
+  },
+  "items": {
+    "map": {
+      "name": "Scout's Map",
+      "description": "A detailed map of the volcanic region."
+    },
+    "volcano-key": {
+      "name": "Volcano Gate Key",
+      "description": "An heavy iron key with fiery runes."
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A young hero seeking to save the kingdom."
+    },
+    "scout": {
+      "name": "Boran the Scout",
+      "description": "A scout of the royal guard who knows the way inside.",
+      "dialogues": {
+        "before_talk": "Boran: The cold is worsening, but I cannot enter the volcano without my map. Find it in the village and I will trade you the Volcano Gate Key.",
+        "after_talk": "Boran: Have you found my map? Look near the village market stalls.",
+        "after_satisfied": "Boran: Perfect! Here is the Volcano Gate Key. Unlock the cave door and get inside.",
+        "hostile": "Boran: How dare you steal from the crown! Guards!"
+      }
+    }
+  }
+}

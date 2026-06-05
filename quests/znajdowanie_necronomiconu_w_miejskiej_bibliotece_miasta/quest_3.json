@@ -1,0 +1,57 @@
+{
+  "name": "Quest 3: Confront the Officials",
+  "locations": {
+    "city-square": {
+      "name": "Poznań City Square",
+      "description": "The Poznań City Square. The Town Hall stands in the center, but its heavy doors are locked."
+    },
+    "town-hall": {
+      "name": "Town Hall Corridor",
+      "description": "A quiet, carpeted corridor leading to the Mayor's Office."
+    },
+    "mayors-office": {
+      "name": "Mayor's Office",
+      "description": "The grand office of the Mayor of Poznań. Rich oak furniture and the city flag fill the room."
+    }
+  },
+  "items": {
+    "necronomicon": {
+      "name": "The Necronomicon",
+      "description": "The ancient book of dark magic."
+    },
+    "official-stamp": {
+      "name": "Official Library Stamp",
+      "description": "The library stamp obtained from Director Kowalski."
+    },
+    "town-hall-key": {
+      "name": "Town Hall Key Card",
+      "description": "A silver keycard used to unlock the Town Hall gates."
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "Alden the Biographer",
+      "description": "A biographer researching forbidden texts."
+    },
+    "clerk": {
+      "name": "Mr. Janusz the Clerk",
+      "description": "A weary municipal clerk standing in the city square.",
+      "dialogues": {
+        "before_talk": "Mr. Janusz: Sighed... If you want to enter the Town Hall, I need proof you have a stamped authorization from the central library.",
+        "after_talk": "Mr. Janusz: Do you have the official library stamp? Kowalski usually has it.",
+        "after_satisfied": "Mr. Janusz: Perfect! The stamp is authentic. Here is the Town Hall Key Card. Go on in.",
+        "hostile": "Mr. Janusz: Police! Thief!"
+      }
+    },
+    "mayor": {
+      "name": "Mayor Jaśkowiak",
+      "description": "The Mayor of Poznań, who wants the Necronomicon to prevent library leaks.",
+      "dialogues": {
+        "before_talk": "Mayor Jaśkowiak: Welcome, biographer. Do you bring the Necronomicon? I will sign your research approval and let you keep it under state supervision.",
+        "after_talk": "Mayor Jaśkowiak: Please, hand over the book so I can sign the approval forms.",
+        "after_satisfied": "Mayor Jaśkowiak: Excellent! Your research is approved, and the book is officially yours to study. You have beaten the bureaucracy!",
+        "hostile": "Mayor Jaśkowiak: Security, throw this traitor out!"
+      }
+    }
+  }
+}

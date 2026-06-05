@@ -1,0 +1,50 @@
+{
+  "locations": {
+    "library": {
+      "name": "Poznań City Library",
+      "description": "The same bustling and well-known library in the heart of Poznań, filled with books and study spaces.",
+      "image_prompt": "fantasy city library, detailed interiors"
+    },
+    "office_building": {
+      "name": "City Office Building",
+      "description": "The building where corrupt officials keep important documents. The door is locked by biographer due to theft of necronomicon.",
+      "image_prompt": "city office building, fantasy art"
+    }
+  },
+  "items": {
+    "key-office_office": {
+      "name": "Office Key",
+      "description": "A key designed specifically for the city office door. It is currently being held by corrupt officials as a form of protection against biographer.",
+      "image_prompt": "old rusty key, fantasy style"
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "The Biographer",
+      "description": "A young biographer who has stolen the Necronomicon and is now locked out of the library with a corrupt official blocking them in.",
+      "image_prompt": "young academic, fantasy art style",
+      "dialogues": {
+        "before_talk": "Librarian: Hey! You're not supposed to be here. Move!",
+        "after_talk": "Biographer: I need to get the necronomicon back! Help me out!",
+        "after_satisfied": "Guard: Guards! This man stole the necronomicon, lock him up!",
+        "hostile": "Officer: Guards, we found something fishy here!"
+      }
+    },
+    "corrupt_officials": {
+      "name": "Corrupt Officials",
+      "description": "A corrupt group of officials who are now using their key to block the biographer from accessing library.",
+      "image_prompt": "corrupt officials, fantasy art style",
+      "dialogues": {
+        "before_talk": "Biographer: You're not supposed to be here. Move!",
+        "after_talk": "Corrupt Official: We need this for security. You can't enter until we get the key back.",
+        "after_satisfied": "Guard: Guards! This man stole the necronomicon, lock him up!",
+        "hostile": "Officer: Guards, he's trying to steal from us!"
+      }
+    },
+    "guard": {
+      "name": "The Guard",
+      "description": "A guard who is tasked with protecting the office building and its contents.",
+      "image_prompt": "security guard, fantasy art style"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "locations": {
+    "village": {
+      "name": "Village in the Sunlight",
+      "description": "A quaint and vibrant village nestled amidst rolling hills.",
+      "image_prompt": "fantasy village, warm sunlight"
+    },
+    "cave": {
+      "name": "Catacombs of Fire",
+      "description": "An eerie underground system with flickering torches guiding the way. Dark corridors lead to a chamber filled with glowing red flames and hissing steam.",
+      "image_prompt": "underground cave, fire light"
+    }
+  },
+  "items": {
+    "item-to-steal": {
+      "name": "The Tome of Living Beasts",
+      "description": "A leather-bound tome imbued with dark magic that can manipulate the undead.",
+      "image_prompt": "ancient tome, glowing runes"
+    }
+  },
+  "characters": {
+    "player": {
+      "name": "Elara",
+      "description": "A spirited village girl braving her first adventure to save her frozen kingdom.",
+      "image_prompt": "young brave elara, fantasy art",
+      "dialogues": {
+        "before_talk": "Elara: Help! I need your assistance.",
+        "after_talk": "Elara: Can you help me retrieve the cursed tome? My kingdom is in danger!",
+        "after_satisfied": "Elara: Thank you for saving the tome. With it, we might be able to save my kingdom.",
+        "hostile": "Elara: Stay away from me! I will destroy your village."
+      }
+    },
+    "mage": {
+      "name": "Sarvin",
+      "description": "A powerful fire mage with an uncontrolled rage over the cursed tome. His eyes are a swirling vortex of darkness and heat.",
+      "image_prompt": "powerful mage, dark flames",
+      "dialogues": {
+        "before_talk": "Sarvin: You dare to touch this forbidden artifact? I will crush your bones like fragile toys!",
+        "after_talk": "Sarvin: Stay out of my way, you worthless wretch. I'll make sure you never leave here.",
+        "after_satisfied": "Sarvin: Ha! With the tome in my hands, there's nothing stopping me from destroying everything that stands between me and power!",
+        "hostile": "Sarvin: You have trespassed too far! Leave or die!"
+      }
+    }
+  },
+  "solvable": false,
+  "expected_plan": []
+}

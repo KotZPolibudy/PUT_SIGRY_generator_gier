@@ -1,0 +1,43 @@
+{
+  "name": "Quest 2: Bureaucratic Escape",
+  "locations": {
+    "archive-room": {
+      "name": "Central Archive Room",
+      "description": "You stand in the dusty archives, holding the cursed Necronomicon. The only exit is back through the Entrance Hall."
+    },
+    "library-entrance": {
+      "name": "Library Entrance Hall",
+      "description": "The Director of the Library has blocked the main exit! He is furious and intends to lock you in forever."
+    },
+    "city-square": {
+      "name": "Poznań City Square",
+      "description": "You finally made it out! The fresh air of the Poznań City Square hits your face, but you still need to legalize your possession of the tome."
+    }
+  },
+  "items": {
+    "stun-spray": {
+      "name": "Archival Stun Spray",
+      "description": "A spray bottle filled with strong chemical cleaner, effective at blinding hostile officials."
+    },
+    "official-stamp": {
+      "name": "Official Library Stamp",
+      "description": "An official rubber stamp. Getting it is the only way to prove you had permission to take the book."
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "Alden the Biographer",
+      "description": "A biographer researching forbidden texts."
+    },
+    "director": {
+      "name": "Director Kowalski",
+      "description": "The corrupt Director of the library who wants to confiscate the book and cover up its existence.",
+      "dialogues": {
+        "before_talk": "Director Kowalski: You! You have the Necronomicon! You will never leave this library with it! I am locking the doors!",
+        "after_talk": "Director Kowalski: Surrender the book, or I will call the guards!",
+        "after_satisfied": "Director Kowalski: You shouldn't see this.",
+        "hostile": "Director Kowalski: Aaargh! My eyes! The chemical spray!"
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "locations": {
+    "village": {
+      "name": "Village in the Sunlight",
+      "description": "A quaint and vibrant village nestled amidst rolling hills.",
+      "image_prompt": "fantasy village, warm sunlight"
+    },
+    "cave": {
+      "name": "Catacombs of Fire",
+      "description": "An eerie underground system with flickering torches guiding the way. Dark corridors lead to a chamber filled with glowing red flames and hissing steam.",
+      "image_prompt": "underground cave, fire light"
+    }
+  },
+  "items": {
+    "zombified-creature": {
+      "name": "Zombified Monstrosities",
+      "description": "The tome has summoned a horde of monstrous creatures from the depths of the earth. They are undead and relentless in their search for power.",
+      "image_prompt": "zombie army, horror style"
+    },
+    "magic-key": {
+      "name": "Magic Key",
+      "description": "A powerful key that can unlock any locked door or gate. It is essential to continue on the quest path.",
+      "image_prompt": "powerful magic key, glowing runes"
+    }
+  },
+  "characters": {
+    "player": {
+      "name": "Elara",
+      "description": "A spirited village girl braving her first adventure to save her frozen kingdom.",
+      "image_prompt": "young brave elara, fantasy art",
+      "dialogues": {
+        "before_talk": "Elara: Help me destroy these undead creatures! They threaten my kingdom!",
+        "after_talk": "Elara: We must find a way to escape this place. There are too many of them.",
+        "after_satisfied": "Elara: With your help, we finally broke the siege! Now let's head back home and rebuild our kingdom.",
+        "hostile": "Elara: Stay away from me! You'll only get in my way!"
+      }
+    },
+    "mage": {
+      "name": "Sarvin",
+      "description": "A powerful fire mage with an uncontrolled rage over the cursed tome. His eyes are a swirling vortex of darkness and heat.",
+      "image_prompt": "powerful mage, dark flames",
+      "dialogues": {
+        "before_talk": "Sarvin: You dare to challenge me? I will show you my wrath!",
+        "after_talk": "Sarvin: Leave now! For your own safety. Your village is safe.",
+        "after_satisfied": "Sarvin: Ha! With the tome in my hands, there's nothing stopping me from destroying everything that stands between me and power!",
+        "hostile": "Sarvin: You dare to stand against me? I will crush you like a flea!"
+      }
+    },
+    "zombified-creatures": {
+      "name": "Zombie Army",
+      "description": "A horde of undead creatures from the depths of the earth, led by Sarvin. Their ranks are unceasing and relentless in their quest for power.",
+      "image_prompt": "zombie army, horror style"
+    }
+  },
+  "solvable": false,
+  "expected_plan": []
+}

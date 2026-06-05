@@ -1,0 +1,43 @@
+{
+  "name": "Quest 1: Search for the Necronomicon",
+  "locations": {
+    "library-entrance": {
+      "name": "Library Entrance Hall",
+      "description": "The entrance hall of the Poznań Public Library. Bureaucratic posters decorate the walls, and the Archivist stands behind a glass counter."
+    },
+    "archive-room": {
+      "name": "Central Archive Room",
+      "description": "A dark archive room filled with dusty books and towering files. The legendary Necronomicon is located somewhere here."
+    }
+  },
+  "items": {
+    "permit": {
+      "name": "Access Permit Form 12-B",
+      "description": "A signed permit form required to enter the central archives."
+    },
+    "archive-key": {
+      "name": "Archive Key Card",
+      "description": "A plastic keycard used to unlock the archive gates."
+    },
+    "necronomicon": {
+      "name": "The Necronomicon",
+      "description": "An ancient forbidden book bound in leather, containing dark spells."
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "Alden the Biographer",
+      "description": "A biographer researching forbidden texts."
+    },
+    "archivist": {
+      "name": "Mrs. Halina the Archivist",
+      "description": "A strict librarian archivist who strictly follows library regulations.",
+      "dialogues": {
+        "before_talk": "Mrs. Halina: Hello. No one is allowed in the Central Archive without the official Access Permit Form 12-B. Bring it to me and I will grant you access.",
+        "after_talk": "Mrs. Halina: I am still waiting for the permit. Check the entrance desks, somebody might have left it there.",
+        "after_satisfied": "Mrs. Halina: Ah, yes. Form 12-B is in order. Here is the Archive Key Card. Do not stay inside too long.",
+        "hostile": "Mrs. Halina: Security! We have an unauthorized intruder!"
+      }
+    }
+  }
+}

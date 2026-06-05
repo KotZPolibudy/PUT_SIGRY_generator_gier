@@ -1,0 +1,23 @@
+{
+  "locations": {
+    "library": {
+      "name": "Poznań City Library",
+      "description": "The same bustling and well-known library in the heart of Poznań, filled with books and study spaces.",
+      "image_prompt": "fantasy city library, detailed interiors"
+    }
+  },
+  "items": {
+    "necronomicon": {
+      "name": "Necronomicon",
+      "description": "The ancient tomes that contains forbidden knowledge and powerful rituals. It has been returned after being stolen by corrupt officials.",
+      "image_prompt": "antique tomes, dark green covers with strange symbols on them"
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "The Biographer",
+      "description": "A young biographer who successfully managed to get the Necronomicon back and is now safely out of the library.",
+      "image_prompt": "young academic, fantasy art style"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Quest 2: Confront the Fire Mage",
+  "locations": {
+    "cave-entrance": {
+      "name": "Volcanic Cave Entrance",
+      "description": "The heat rises as you step deeper into the cavern. Lava flows glow in the distance."
+    },
+    "lava-chamber": {
+      "name": "Lava Chamber",
+      "description": "A massive chamber with a bubbling pool of molten lava. The rogue Fire Mage stands on a central platform."
+    }
+  },
+  "items": {
+    "ice-spell": {
+      "name": "Ice Spell Scroll",
+      "description": "A scroll containing a freezing ice spell, the perfect counter to a fire mage."
+    },
+    "fire-tome": {
+      "name": "Book of Elements",
+      "description": "The stolen magical tome glowing with hot, volatile elemental power."
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A young hero seeking to save the kingdom."
+    },
+    "fire-mage": {
+      "name": "Ignis the Fire Mage",
+      "description": "A rogue fire mage who stole the Book of Elements to freeze the outer world.",
+      "dialogues": {
+        "before_talk": "Ignis: Intruder! You think you can stop me? I will reduce you to ashes!",
+        "after_talk": "Ignis: Out of my sight, fool! Prepare to burn!",
+        "after_satisfied": "Ignis: You shouldn't see this.",
+        "hostile": "Ignis: Aagh! The cold! It freezes my flames!"
+      }
+    }
+  }
+}

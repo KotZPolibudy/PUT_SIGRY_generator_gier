@@ -1,0 +1,57 @@
+{
+  "locations": {
+    "village": {
+      "name": "Village in the Sunlight",
+      "description": "A quaint and vibrant village nestled amidst rolling hills.",
+      "image_prompt": "fantasy village, warm sunlight"
+    },
+    "castle": {
+      "name": "Frost King's Castle",
+      "description": "An ancient fortress carved into a cliff face. The once-frozen king now lies in his icy tomb. The castle doors are locked and only the magic key can unlock them.",
+      "image_prompt": "ancient castle, frozen king"
+    }
+  },
+  "items": {
+    "frozen-king": {
+      "name": "Frost King",
+      "description": "The once-mighty king who now lies in a deep and icy sleep. The tome's power has awakened the long-frozen king from his slumber, but at what cost?",
+      "image_prompt": "frozen king, ancient artifact"
+    },
+    "magic-key": {
+      "name": "Magic Key",
+      "description": "A powerful key that can unlock any locked door or gate. It is essential to continue on the quest path.",
+      "image_prompt": "powerful magic key, glowing runes"
+    }
+  },
+  "characters": {
+    "player": {
+      "name": "Elara",
+      "description": "A spirited village girl braving her first adventure to save her frozen kingdom.",
+      "image_prompt": "young brave elara, fantasy art",
+      "dialogues": {
+        "before_talk": "Elara: Help me rescue the Frost King! My kingdom is in peril!",
+        "after_talk": "Elara: We must find a way to open this door. The frost king is waiting for us.",
+        "after_satisfied": "Elara: With your help, we finally rescued our king. Now let's head back home and rebuild our kingdom.",
+        "hostile": "Elara: Stay away from me! You'll only get in my way!"
+      }
+    },
+    "mage": {
+      "name": "Sarvin",
+      "description": "A powerful fire mage with an uncontrolled rage over the cursed tome. His eyes are a swirling vortex of darkness and heat.",
+      "image_prompt": "powerful mage, dark flames",
+      "dialogues": {
+        "before_talk": "Sarvin: You dare to challenge me? I will show you my wrath!",
+        "after_talk": "Sarvin: Leave now! For your own safety. Your village is safe.",
+        "after_satisfied": "Sarvin: Ha! With the tome in my hands, there's nothing stopping me from destroying everything that stands between me and power!",
+        "hostile": "Sarvin: You dare to stand against me? I will crush you like a flea!"
+      }
+    },
+    "frozen-king": {
+      "name": "Frost King",
+      "description": "A once-mighty king who now lies in an icy tomb, awaiting Elara's return.",
+      "image_prompt": "frozen king, ancient artifact"
+    }
+  },
+  "solvable": false,
+  "expected_plan": []
+}

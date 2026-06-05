@@ -1,0 +1,39 @@
+{
+  "locations": {
+    "shipwreck": {
+      "name": "Shipwreck",
+      "description": "A sunken pirate ship where Alden discovers the first hint of the hidden treasure.",
+      "image_prompt": "drowned pirate ship, dark waters"
+    },
+    "village": {
+      "name": "The Village",
+      "description": "A small fishing village near the shore.",
+      "image_prompt": "cozy little fishing village, summer scene"
+    }
+  },
+  "items": {
+    "treasure_chest": {
+      "name": "Treasure Chest",
+      "description": "A chest that Alden finds at the bottom of a sunken pirate ship. Inside it are mysterious objects and clues.",
+      "image_prompt": "wooden treasure chest, pirate map inside"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young adventurer in search of the hidden treasure.",
+      "image_prompt": "young adventurer exploring, fantasy style"
+    },
+    "pirate_captain": {
+      "name": "Captain Blackbeard",
+      "description": "The pirate captain who built this ship and hid a treasure inside it. He now guards his secret.",
+      "image_prompt": "dangerous pirate with black beard, pirate ship",
+      "dialogues": {
+        "before_talk": "Captain: I have something for you that belongs to the village. But remember, only one can touch this chest... and die a hero or a traitor.",
+        "after_talk": "Captain: You will need more courage than anyone in the world to get it out of me.",
+        "after_satisfied": "Captain: Very well, my treasure is yours now, but be ready for its power.",
+        "hostile": "Captain: What do you think you are doing? Get back before I punish you!"
+      }
+    }
+  }
+}

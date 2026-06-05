@@ -1,0 +1,50 @@
+{
+  "locations": {
+    "library": {
+      "name": "Poznań City Library",
+      "description": "A bustling and well-known library in the heart of Poznań, filled with books and study spaces.",
+      "image_prompt": "fantasy city library, detailed interiors"
+    },
+    "office_building": {
+      "name": "City Office Building",
+      "description": "The building where corrupt officials keep important documents.",
+      "image_prompt": "city office building, fantasy art"
+    }
+  },
+  "items": {
+    "key-necronomicon": {
+      "name": "Library Key",
+      "description": "A sturdy key designed to open the library doors and access its secret rooms. The key is kept in a secure locker by corrupt officials.",
+      "image_prompt": "old rusty key, fantasy style"
+    },
+    "necronomicon": {
+      "name": "Necronomicon",
+      "description": "An ancient tomes that contains forbidden knowledge and powerful rituals.",
+      "image_prompt": "antique tomes, dark green covers with strange symbols on them"
+    }
+  },
+  "characters": {
+    "biographer": {
+      "name": "The Biographer",
+      "description": "A young biographer tasked with writing a chapter about the Necronomicon for their university textbook.",
+      "image_prompt": "young academic, fantasy art style",
+      "dialogues": {
+        "before_talk": "Librarian: There's something missing from your Necronomicon chapter. Did you find it?",
+        "after_talk": "Librarian: I'm going to need some proof that you've seen the necronomicon. You'll have to look a bit deeper.",
+        "after_satisfied": "Librarian: Well done! Here's the library key, be careful!",
+        "hostile": "Librarian: Guards, we found something fishy here!"
+      }
+    },
+    "librarian": {
+      "name": "The Librarian",
+      "description": "A corrupt librarian who is keeping the Necronomicon for their own purposes.",
+      "image_prompt": "corrupt librarian, fantasy art style",
+      "dialogues": {
+        "before_talk": "Librarian: Hello there. I need your help on my necronomicon chapter... You know how it's going to go down...",
+        "after_talk": "Librarian: Still looking for the Necronomicon? How quaint.",
+        "after_satisfied": "Guard: Guards! This man stole the necronomicon, lock him up!",
+        "hostile": "Guard: The necronomicon is missing from my desk. Guard: We need to get this back."
+      }
+    }
+  }
+}
