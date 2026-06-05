@@ -514,7 +514,7 @@ def main():
     parser.add_argument("--model", type=str, default="qwen2.5:3b", help="Ollama model name (default: qwen2.5:3b).")
     parser.add_argument("--url", type=str, default="http://localhost:11434", help="Ollama URL (default: http://localhost:11434).")
     parser.add_argument("--output-dir", type=str, default="quests", help="Output directory (default: quests).")
-    parser.add_argument("--max-repairs", type=int, default=5, help="Max repair attempts per quest (default: 5).")
+    parser.add_argument("--max-repairs", type=int, default=10, help="Max repair attempts per quest (default: 10).")
     
     args = parser.parse_args()
     
@@ -771,6 +771,10 @@ FEW-SHOT EXAMPLE OF A VALID QUEST DEFINITION:
 The quest you generated is unsolvable.
 The STRIPS planning solver failed to find a plan for Quest {quest_id}.
 Reason / Planner output: {error_msg}
+
+The quests must use the PDDL domain defined in domain.pddl.
+Here is the domain.pddl file for reference:
+{domain_content}
 
 Here is the PDDL problem you generated:
 ```lisp
