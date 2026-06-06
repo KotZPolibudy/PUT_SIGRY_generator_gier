@@ -1,1 +1,33 @@
-(define (problem quest_2) (:domain magic-world) (:objects hero - player forbidden-room-professor - npc object-of-interest - item room-with-secret-object - location forbidden-room-object - object) (:init (at hero room-with-secret-object) (is-alive hero) (connected forbidden-room-object room-with-secret-object) (connected room-with-secret-object forbidden-room-object) (not (locked room-with-secret-object)) (has object-of-interest forbidden-room-professor) (not (is-hostile hero forbidden-room-professor)) (is-alive forbidden-room-professor) (at forbidden-room-professor room-with-secret-object) (is-alive hero) (is-alive forbidden-room-professor)) (:goal (and (at hero forbidden-room-object) (has object-of-interest hero))))
+(define (problem quest_2)
+  (:domain magic-world)
+  (:objects
+    hero - player
+    professor - npc
+    secretary - npc
+    stamped-form - item
+    office-key - item
+    hallway - location
+    deans-office - location
+  )
+  (:init
+    (at hero hallway)
+    (at secretary hallway)
+    (at professor deans-office)
+    (is-alive hero)
+    (is-alive secretary)
+    (is-alive professor)
+    (item-at stamped-form hallway)
+    (connected hallway deans-office)
+    (connected deans-office hallway)
+    (locked deans-office)
+    (key-for office-key deans-office)
+    (has secretary office-key)
+    (npc-wants-item secretary stamped-form)
+    (grantable office-key)
+  )
+  (:goal (and
+    (npc-satisfied secretary)
+    (has hero office-key)
+    (at hero deans-office)
+  ))
+)

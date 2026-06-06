@@ -1,26 +1,25 @@
-define (problem quest_3)
-(:domain magic-world)
-(:objects hero - player object-of-interest - item forbidden-room-object - location forbidden_room_object_of_interest - location professor - npc room-with-secret-object - location room-with_secret_object - location)
-(:init
-    (at hero room-with-secret-object)
+(define (problem quest_3)
+  (:domain magic-world)
+  (:objects
+    hero - player
+    professor - npc
+    project-report - item
+    deans-office - location
+    seminar-room - location
+  )
+  (:init
+    (at hero deans-office)
+    (at professor seminar-room)
     (is-alive hero)
-    (has forbidden_room_object_of_interest hero)
-    (vulnerable_to hero professor forbidden_room_object_of_interest)
     (is-alive professor)
-    (at professor room-with-secret-object)
-    (at object-of-interest room-with-secret-object)
-    (connected room-with-secret-object forbidden_room_object_of_interest)
-    (is-alive forbidden_room_object_of_interest)
-    (connected forbidden_room_object_of_interest room-with_secret_object)
-    (has forbidden_room_object_of_interest professor)
-    (at forbidden_room_object_of_interest forbidden_room_object_of_interest)
-    (locked room-with-secret-object)
-    (key-for (item-of 'lockpick) room-with-secret-object)
-    (connected room-with_secret_object forbidden_room_object_of_interest)
-    (connected forbidden_room_object_of_interest room-with_secret_object)
-)
-(:goal
-    (and
-        (has forbidden_room_object_of_interest hero)
-    ))
+    (item-at project-report deans-office)
+    (connected deans-office seminar-room)
+    (connected seminar-room deans-office)
+    (npc-wants-item professor project-report)
+    (grantable project-report)
+  )
+  (:goal (and
+    (has-talked hero professor)
+    (npc-satisfied professor)
+  ))
 )

@@ -1,47 +1,45 @@
 {
   "locations": {
-    "university_building": {
-      "name": "University Building",
-      "description": "A large, labyrinthine building filled with classrooms and offices.",
-      "image_prompt": "fantasy university campus, academic buildings"
+    "corridor": {
+      "name": "University Corridor",
+      "description": "A long, echoing corridor lined with notice boards. Professor Riddle patrols here before his lecture.",
+      "image_prompt": "university corridor, old academic building, notice boards, moody lighting"
+    },
+    "classroom": {
+      "name": "Professor's Classroom",
+      "description": "A strict and orderly classroom. The door is locked — only those who have passed the professor's test may enter.",
+      "image_prompt": "gothic university classroom, chalkboard, old desks, fantasy style"
     }
   },
   "items": {
     "textbook": {
       "name": "Advanced Textbook on Magic",
-      "description": "A book containing intricate magic formulas.",
-      "image_prompt": "advanced magic textbook, fantasy style"
-    },
-    "key1": {
-      "name": "University Campus Key",
-      "description": "A key that grants access to various areas of the university building and its classrooms.",
-      "image_prompt": "university campus key, fantasy art"
+      "description": "A heavy tome required by Professor Riddle. He will only accept students who bring it.",
+      "image_prompt": "advanced magic textbook, leather bound, fantasy style"
     }
   },
   "characters": {
+    "hero": {
+      "name": "Alden the Student",
+      "description": "A determined student trying to pass his project and earn the professor's approval.",
+      "image_prompt": "young university student, backpack, fantasy setting"
+    },
     "professor": {
       "name": "Professor Riddle",
-      "description": "A notoriously difficult professor known for his cryptic lectures and challenging exams.",
-      "image_prompt": "elderly wizard teacher, old-fashioned clothes, glasses",
+      "description": "A notoriously difficult professor known for his cryptic demands and impossible standards.",
+      "image_prompt": "elderly wizard professor, glasses, stern expression, academic robes",
       "dialogues": {
-        "before_talk": "Riddle: Welcome, student. You must earn the right to enter my classroom by solving these riddles.",
-        "after_talk": "Riddle: Not yet ready? Go to the bookstore and find a textbook on magic.",
-        "after_satisfied": "Riddle: Excellent work! Here is your key to the university building.",
-        "hostile": "Riddle: Offender! Guards, stop this student!"
-      }
-    },
-    "alyssa": {
-      "name": "Alyssa",
-      "description": "The eager and determined student seeking knowledge from Professor Riddle.",
-      "image_prompt": "student looking at books, determination in her eyes",
-      "dialogues": {
-        "before_talk": "Alyssa: Thank you for the key, professor. I will continue my studies now.",
-        "after_talk": "Alyssa: I have a textbook to find and riddles to solve!",
-        "after_satisfied": "Alyssa: Thank you! With the key I can enter your classroom now!",
-        "hostile": "Riddle: Not yet, Alyssa. You must do better!"
+        "before_talk": "Riddle: You dare approach me empty-handed? Bring me the Advanced Textbook — then we can talk.",
+        "after_talk": "Riddle: Still looking for that textbook? Check the corridor shelves!",
+        "after_satisfied": "Riddle: Hmm... acceptable. You may proceed to the classroom.",
+        "hostile": "Riddle: Outrageous! Security! Remove this student at once!"
       }
     }
   },
-  "solvable": false,
-  "expected_plan": []
+  "solvable": true,
+  "expected_plan": [
+    "(pick-up hero textbook corridor)",
+    "(talk hero professor corridor)",
+    "(give-item hero professor textbook corridor)"
+  ]
 }

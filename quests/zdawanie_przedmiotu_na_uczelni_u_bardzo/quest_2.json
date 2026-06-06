@@ -1,46 +1,64 @@
 {
   "locations": {
-    "room-with-secret-object": {
-      "name": "Secret Room",
-      "description": "A room filled with ancient artifacts and mysterious symbols. The door is heavily guarded, but there seems to be an exit through a hidden passage.",
-      "image_prompt": "fantasy secret room, arcane symbols on walls"
+    "hallway": {
+      "name": "Dean's Office Hallway",
+      "description": "A formal hallway outside the Dean's office. The secretary sits at her desk, guarding the entrance.",
+      "image_prompt": "university hallway, secretary desk, formal atmosphere, fantasy style"
     },
-    "forbidden-room-object-of-interest": {
-      "name": "Object of Interest Location",
-      "description": "A location where the object-of-interest might be found. This is separate from the secret room but accessible through it.",
-      "image_prompt": "fantasy mysterious object, glowing and enigmatic"
+    "deans-office": {
+      "name": "Dean's Office",
+      "description": "The imposing office of the Dean. Access requires a special key obtainable only from the secretary.",
+      "image_prompt": "grand university dean office, wooden furniture, academic portraits, fantasy style"
     }
   },
   "items": {
-    "object-of-interest": {
-      "name": "Object of Interest",
-      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
-      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    "stamped-form": {
+      "name": "Stamped Submission Form",
+      "description": "An official form stamped by the department. The secretary demands it before handing over the office key.",
+      "image_prompt": "official stamped document, red wax seal, fantasy university style"
+    },
+    "office-key": {
+      "name": "Dean's Office Key",
+      "description": "A bronze key that unlocks the Dean's office door.",
+      "image_prompt": "bronze key, official, university crest engraved, fantasy art"
     }
   },
   "characters": {
     "hero": {
-      "name": "Alden the Apprentice",
-      "description": "A brave young student looking to complete his studies and prove himself. He is still in a state of immaturity but has great potential.",
-      "image_prompt": "fantasy young student, looks like he's about to embark on a quest"
+      "name": "Alden the Student",
+      "description": "A determined student fighting through bureaucracy to submit his project.",
+      "image_prompt": "young university student, backpack, frustrated look, fantasy setting"
     },
-    "forbidden-room-professor": {
-      "name": "Professor Zephyr",
-      "description": "A renowned professor who teaches the most arcane and dangerous magic. His lectures are captivating but his students fear him.",
-      "image_prompt": "elderly professor, stern expression, mustache",
+    "secretary": {
+      "name": "Secretary Halina",
+      "description": "A strict and uncompromising secretary who follows the rulebook to the letter.",
+      "image_prompt": "stern middle-aged secretary, glasses, university office, fantasy style",
       "dialogues": {
-        "before_talk": "Prof. Zephyr: Alden, I've decided to give you a task of utmost importance. But first, we need to get into the secret room in the basement.",
-        "after_talk": "Prof. Zephyr: What did you expect? The only way is through that locked door at the end of this corridor.",
-        "after_satisfied": "Prof. Zephyr: Finally, your loyalty has not been misplaced. Here's the key I promised.",
-        "hostile": "Prof. Zephyr: Alden! You've managed to sneak into my secret room? What are you planning to do with that?"
+        "before_talk": "Halina: I cannot let you through without the official stamped form. Rules are rules.",
+        "after_talk": "Halina: Form first, then the key. No exceptions.",
+        "after_satisfied": "Halina: Very well. Here is the key to the Dean's office. Don't lose it.",
+        "hostile": "Halina: Security! This student is trespassing!"
       }
     },
-    "forbidden-room-object-of-interest": {
-      "name": "Object of Interest",
-      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
-      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    "professor": {
+      "name": "Professor Riddle",
+      "description": "The professor is waiting inside the Dean's office to evaluate the student's project.",
+      "image_prompt": "elderly professor waiting, academic office, stern look, fantasy style",
+      "dialogues": {
+        "before_talk": "Riddle: You finally made it past Halina. Impressive. Now — let's see your work.",
+        "after_talk": "Riddle: Come back when you have something to show me.",
+        "after_satisfied": "Riddle: Acceptable. I suppose you may pass.",
+        "hostile": "Riddle: Leave my office immediately!"
+      }
     }
   },
-  "solvable": false,
-  "expected_plan": []
+  "solvable": true,
+  "expected_plan": [
+    "(pick-up hero stamped-form hallway)",
+    "(talk hero secretary hallway)",
+    "(give-item hero secretary stamped-form hallway)",
+    "(receive-item hero secretary office-key hallway)",
+    "(unlock hero hallway deans-office office-key)",
+    "(move hero hallway deans-office)"
+  ]
 }

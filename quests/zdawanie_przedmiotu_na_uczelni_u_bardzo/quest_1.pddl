@@ -1,15 +1,27 @@
-{
-  :domain magic-world
-  (:objects alyssa - npc professor - npc textbook - item key1 - item university_building - location hero - character)
+(define (problem quest_1)
+  (:domain magic-world)
+  (:objects
+    hero - player
+    professor - npc
+    textbook - item
+    corridor - location
+    classroom - location
+  )
   (:init
-   (is-alive alyssa) ; Ensure all characters are alive in the init
-   (at alyssa university_building)
-   (textbook (at professor textbook))
-   (is-alive professor)
-   (key-for key1 university_building)
-   (has professor key1)
-   (not (has alyssa textbook)))
+    (at hero corridor)
+    (at professor corridor)
+    (is-alive hero)
+    (is-alive professor)
+    (item-at textbook corridor)
+    (connected corridor classroom)
+    (connected classroom corridor)
+    (locked classroom)
+    (key-for textbook classroom)
+    (npc-wants-item professor textbook)
+    (grantable textbook)
+  )
   (:goal (and
-     (locked university_building)
-     (has alyssa textbook))))
-}
+    (has-talked hero professor)
+    (npc-satisfied professor)
+  ))
+)

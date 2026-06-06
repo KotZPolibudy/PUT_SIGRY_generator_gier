@@ -1,47 +1,46 @@
 {
   "locations": {
-    "room-with-secret-object": {
-      "name": "Secret Room",
-      "description": "A room filled with ancient artifacts and mysterious symbols. The door is heavily guarded, but there seems to be an exit through a hidden passage.",
-      "image_prompt": "fantasy secret room, arcane symbols on walls"
+    "deans-office": {
+      "name": "Dean's Office",
+      "description": "The office where the final project report must be submitted. The professor waits in the seminar room next door.",
+      "image_prompt": "university dean office, stacks of papers, formal desk, fantasy style"
     },
-    "forbidden-room-object-of-interest": {
-      "name": "Forbidden Room Object",
-      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
-      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    "seminar-room": {
+      "name": "Seminar Room",
+      "description": "A small room used for project defenses. Professor Riddle sits here, ready to pass judgment.",
+      "image_prompt": "university seminar room, projection screen, professor at table, fantasy style"
     }
   },
   "items": {
-    "forbidden-room-object-of-interest": {
-      "name": "Object of Interest",
-      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
-      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    "project-report": {
+      "name": "Final Project Report",
+      "description": "The completed project report that must be submitted to Professor Riddle to pass the course.",
+      "image_prompt": "thick bound thesis report, university stamp, fantasy academic style"
     }
   },
   "characters": {
     "hero": {
-      "name": "Alden the Apprentice",
-      "description": "A brave young student looking to complete his studies and prove himself. He is still in a state of immaturity but has great potential.",
-      "image_prompt": "fantasy young student, looks like he's about to embark on a quest"
+      "name": "Alden the Student",
+      "description": "A student on the verge of completing his academic journey. All that remains is submitting the project report.",
+      "image_prompt": "young student holding thesis, relieved expression, fantasy university"
     },
     "professor": {
-      "name": "Professor Zephyr",
-      "description": "A renowned professor who teaches the most arcane and dangerous magic. His lectures are captivating but his students fear him.",
-      "image_prompt": "elderly professor, stern expression, mustache",
+      "name": "Professor Riddle",
+      "description": "The final gatekeeper. He awaits the project report in the seminar room and will pass judgment on the student's entire semester.",
+      "image_prompt": "elderly professor at seminar desk, academic robes, stern expression, fantasy style",
       "dialogues": {
-        "before_talk": "Prof. Zephyr: Alden, I've decided to give you a task of utmost importance. But first, we need to get into the secret room in the basement.",
-        "after_talk": "Prof. Zephyr: What did you expect? The only way is through that locked door at the end of this corridor.",
-        "after_satisfied": "Prof. Zephyr: Finally, your loyalty has not been misplaced. Here's the key I promised.",
-        "hostile": "Prof. Zephyr: Alden! You've managed to sneak into my secret room? What are you planning to do with that?"
+        "before_talk": "Riddle: Ah, you again. You have the report? This had better be worth my time.",
+        "after_talk": "Riddle: Go fetch the report. I do not accept empty hands.",
+        "after_satisfied": "Riddle: ... Surprisingly adequate. You pass. Now get out of my sight.",
+        "hostile": "Riddle: Unacceptable! This student has wasted my time. Remove them!"
       }
-    },
-    "forbidden_room_object_of_interest": {
-      "name": "Object of Interest",
-      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
-      "image_prompt": "shiny mysterious object, glowing and enigmatic"
     }
   },
-  "pddl_domain_file_path": "./domain.pddl",
-  "solvable": false,
-  "expected_plan": []
+  "solvable": true,
+  "expected_plan": [
+    "(pick-up hero project-report deans-office)",
+    "(move hero deans-office seminar-room)",
+    "(talk hero professor seminar-room)",
+    "(give-item hero professor project-report seminar-room)"
+  ]
 }
