@@ -12,15 +12,26 @@ Projekt dotyczy eksperymentalnej implementacji automatycznego generatora fabuł 
 
 ### Podział pracy:
 - Oskar Kiliańczyk
-  - TODO
+  - testowanie pierwszej generacji questów
+  - stworzenie i integracja generatora grafik na podstawie scenariuszy
+  - testy nowych questów wraz z generatorem grafik
 - Wojciech Kot
-  - TODO
+  - stworzenie generatora scenariuszy, integracja z Ollamą, stworzenie promptu systemowego oraz wdrożenie pętli naprawczej
+  - projekt i implementacja kodu ogrywającego grę/fabułę play_game.py wraz z mechanizmem sprawdzania solvability podczas gry
+  - implementacja parsera PDDL oraz solvera BFS wraz z testami jednostkowymi
+  - stworzenie i testowanie pierwszej generacji questów (w tym naprawa opisanej niżej Kampanii #1)
+  - stworzenie skryptów ułatwiających użytkowanie (.bat)
+  - drobne prace nad raportem
 - Stanisław Główczewski
   - przeprowadzenie testów, ewentualne naprawy questów
+  - integracja z alternatywnym modelem
   - stworzenie nowego questu, wykorzystując alternatywny model
-  - prace nad raportem
+  - główne prace nad raportem
 - Kacper Dąbrowski
-  - TODO
+  - stworzenie domeny pddl (czyli podjęcie bardzo istotnych decyzji architektonicznych na samym początku projektu!)
+  - motywacja reszty do pracy, tym że ktoś zaczął :) #TODO - opisz se coś
+  - tworzenie i testowanie nowych fabuł
+
 
 ---
 
@@ -47,7 +58,7 @@ graph TD
    * **Uziemiacz (Grounding Engine)**: Generuje wszystkie możliwe akcje dla danej konfiguracji obiektów i typów.
    * **BFS Planner**: Szuka najkrótszej ścieżki do celu. Służy do automatycznego sprawdzenia, czy wygenerowane zadanie jest możliwe do ukończenia.
 
-3. **Pętla Naprawcza (Self-Repair)**: Jeśli planner nie znajdzie rozwiązania lub parser zgłosi błąd, skrypt automatycznie podejmuje próbę naprawy. Najpierw stosowane są **automatyczne poprawki strukturalne w Pythonie** (mapowanie wymyślonych predykatów typu `has-hero` do standardowych, korekta liczby argumentów predykatów, automatyczne wstrzykiwanie `is-alive` dla wszystkich postaci, uzupełnianie połączeń dwukierunkowych oraz lokacji startowej gracza). Następnie uruchamiany jest **silnik diagnostyki logicznej**, który w przypadku braku planu generuje szczegółowe wskazówki (o rozłączonych lokacjach, braku kluczy do drzwi, niespełnialnych celach czy rozbieżnościach w nazwach obiektów między PDDL i JSON). Te precyzyjne wskazówki są przekazywane z powrotem do modelu LLM (do 10 prób na quest), co zwiększa skuteczność automatycznej naprawy bez ingerencji człowieka. Finalne, poprawione i w pełni ukończalne pliki zapisywane są bezpośrednio w katalogu kampanii.
+3. **Pętla Naprawcza (Self-Repair)**: Jeśli planner nie znajdzie rozwiązania lub parser zgłosi błąd, skrypt automatycznie podejmuje próbę naprawy. Najpierw stosowane są **automatyczne poprawki strukturalne w Pythonie** (mapowanie wymyślonych predykatów typu `has-hero` do standardowych, korekta liczby argumentów predykatów, automatyczne wstrzykiwanie `is-alive` dla wszystkich postaci, uzupełnianie połączeń dwukierunkowych oraz lokacji startowej gracza). Następnie uruchamiany jest **silnik diagnostyki logicznej**, który w przypadku braku planu generuje szczegółowe wskazówki (o rozłączonych lokacjach, braku kluczy do drzwi, niespełnialnych celach czy rozbieżnościach w nazwach obiektów między PDDL i JSON). Te precyzyjne wskazówki są przekazywane z powrotem do modelu LLM (domyślnie do 10 prób na quest), co zwiększa skuteczność automatycznej naprawy bez ingerencji człowieka. Finalne, poprawione i w pełni ukończalne pliki zapisywane są bezpośrednio w katalogu kampanii.
 
 ---
 
@@ -71,10 +82,11 @@ Podczas prac eksperymentalnych z lokalnym modelem `qwen2.5:3b` napotkaliśmy sze
 
 ---
 
-## 4. Przykłady Questów (oraz ręczne poprawki)
+## 4. Przykłady Questów (oraz ręczne* poprawki)
 
 Ze względu na ograniczenia rozmiaru modelu `qwen2.5:3b`, mimo pętli naprawczej, wygenerowane automatycznie pliki PDDL zawierały błędy logiczne (np. brak zadeklarowanych połączeń między lokacjami lub brak kluczy w obiektach). Poniżej przedstawiono dwa przykładowe, poprawione, w pełni grywalne kampanie bazujące na wygenerowanych plikach (oryginalne, surowe wyniki działania generatora zachowano w podkatalogach `raw/` danej kampanii). Więcej plików z grami znajduje się w folderze `quests`.
 
+\* Ręczne w znaczeniu wymagające interwencji dewelopera, jednak wykonane za pomocą LLM'ów dostępnych w sieci o znacznie większych możliwościach niż lokalne, takich jak Gemini 3.5 Flash)
 
 ### Kampania 1: Uratowanie Zamarzającego Królestwa (odzyskanie_skradzionego_artefaktu_ksiegi_zywiolow)
 
@@ -192,11 +204,13 @@ Program `play_game.py` umożliwia odtworzenie i rozegranie wybranej kampanii. G�
 ### Wady:
 * **Niska niezawodność małych modeli LLM**: Modele rzędu 3B parametrów często gubią reguły gramatyki PDDL w skomplikowanych zapytaniach. Pętla naprawcza pomaga, ale przy bardziej złożonych zadaniach model potrafi wielokrotnie powtarzać te same błędy.
 * **Rozmiar promptu**: Przesyłanie całej definicji domeny PDDL oraz długiego przykładu Few-Shot zużywa dużo tokenów kontekstu i spowalnia wnioskowanie na słabszym sprzęcie.
-* **Ciekawość fabuły**: Pomimo wykorzystania kreatywności dużych modeli językowych, wygenerowane fabuły mogą być zbyt proste i przewidywalne, przez co gra sporo traci.
+* **Ciekawość fabuły**: Pomimo wykorzystania kreatywności dużych modeli językowych, wygenerowane fabuły mogą być zbyt proste i przewidywalne, przez co gra sporo traci. Może to być też spowodowane ograniczeniami danej domeny, lub w ogólności użyciem mechanizmu jakim jest PDDL który zamyka nas w skończonym świecie konkretnych stanów.
+* **Niespójności fabuły**: Ograniczenia małych modeli LLM powiązane z rozmiarem promptu (nawet zanim w pętli naprawczej wdrożono przekazywanie powtórnie domeny PDDL) sprawiają, że dialogi potrafią być bezsensowne - jak w przypadku zadania z księgą żywiołów. Po kradzieży księgi od maga, ten krzyczy "Aahg! So cold!"
 
 ---
 
 ## 8. Podsumowanie
-W projekcie zaimplementowano działający system generacji questów łączący lokalny model LLM z formalizmem planowania STRIPS. Podejście sprawdza się jako proof-of-concept — generator jest w stanie produkować spójne narracyjnie i logicznie weryfikowalne serie questów. Głównym ograniczeniem okazała się wysoka zawodność małych modeli językowych przy generacji strukturalnego PDDL: większość kampanii wymagała ręcznych poprawek po automatycznej pętli naprawczej. Jakość wyników jest silnie zależna od rozmiaru modelu — zastosowanie większych modeli znacząco zmniejsza liczbę błędów. STRIPS jako formalizm zapewnia solidną weryfikację wykonalności questów, jednak nie gwarantuje dramatycznej spójności fabuły — to pozostaje otwartym problemem wymagającym bardziej zaawansowanych metod planowania narracyjnego.
+W projekcie zaimplementowano działający system generacji questów łączący lokalny model LLM z formalizmem planowania STRIPS. Podejście sprawdza się jako proof-of-concept — generator jest w stanie produkować w miare spójne narracyjnie i logicznie weryfikowalne serie questów. Głównym ograniczeniem okazała się wysoka zawodność małych modeli językowych przy generacji strukturalnego PDDL: większość kampanii wymagała ręcznych poprawek po automatycznej pętli naprawczej. Jakość wyników jest silnie zależna od rozmiaru modelu — zastosowanie większych modeli znacząco zmniejsza liczbę błędów. STRIPS jako formalizm zapewnia solidną weryfikację wykonalności questów, jednak nie gwarantuje dramatycznej spójności fabuły — to pozostaje otwartym problemem wymagającym bardziej zaawansowanych metod planowania narracyjnego.
+Zastosowanie STRIPS i PDDL wprowadza silne ramy do projektu, które pozwalają uniknąć problemów spotykanych w "AI Dungeon" (jak te dotyczące zanikającego kontekstu), jednak ma też swoje wady w postaci "sztywności" i znacznego ograniczenia kreatywności i możliwości zarówno gracza jak i modeli generujących fabuły.
 
 [Link do repozytorium z kodem](https://github.com/KotZPolibudy/PUT_SIGRY_generator_gier/tree/main)
