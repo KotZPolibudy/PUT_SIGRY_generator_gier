@@ -89,6 +89,34 @@ Ze względu na ograniczenia rozmiaru modelu `qwen2.5:3b`, mimo pętli naprawczej
 
 \* Ręczne w znaczeniu wymagające interwencji dewelopera, jednak wykonane za pomocą LLM'ów dostępnych w sieci o znacznie większych możliwościach niż lokalne, takich jak Gemini 3.5 Flash)
 
+
+## 5. Generowanie elementów graficznych
+
+W ramach części rozszerzonej projektu zaimplementowano moduł generowania ilustracji dla poszczególnych questów. Grafiki są tworzone automatycznie na podstawie opisów lokacji, postaci i przedmiotów zapisanych w plikach JSON.
+
+Do generacji wykorzystano model dyfuzyjny Stable Diffusion 1.5 (runwayml/stable-diffusion-v1-5) uruchamiany lokalnie przy użyciu biblioteki Diffusers oraz PyTorch. Dla każdego questa tworzony jest pojedynczy obraz przedstawiający główną scenę zadania.
+
+Prompt generowany jest automatycznie poprzez połączenie najważniejszych opisów postaci, lokacji i przedmiotów występujących w danym queście. Przykładowy prompt ma postać:
+```
+Fantasy RPG scene.
+
+Characters:
+A determined student trying to pass his project.
+A notoriously difficult professor.
+
+Location:
+A long, echoing corridor lined with notice boards.
+
+Objects:
+A heavy tome required by Professor Riddle.
+
+cinematic fantasy illustration, game concept art
+```
+
+Podczas implementacji napotkano ograniczenie modelu Stable Diffusion 1.5 wynikające z wykorzystania enkodera CLIP, który obsługuje maksymalnie 77 tokenów. Dłuższe prompty są automatycznie obcinane, co może prowadzić do utraty części informacji o scenie. Aby temu zapobiec, zaimplementowano mechanizm skracania opisów, pozostawiający jedynie najważniejsze informacje o postaciach, lokacjach i przedmiotach.
+
+Takie rozwiązanie pozwala automatycznie generować ilustracje dla dowolnej wygenerowanej kampanii, zwiększając atrakcyjność i immersję podczas odgrywania fabuły.
+
 ### Kampania 1: Uratowanie Zamarzającego Królestwa (odzyskanie_skradzionego_artefaktu_ksiegi_zywiolow)
 
 #### Quest 1: Entrance to the Volcano
