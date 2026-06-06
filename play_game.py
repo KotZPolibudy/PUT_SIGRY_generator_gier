@@ -110,7 +110,7 @@ def get_character_dialogue(char_id, state, quest_data):
         return dialogues.get("hostile", "Get away from me!")
     elif ("npc-satisfied", char_id) in state:
         return dialogues.get("after_satisfied", "Thank you for your help.")
-    elif ("has-talked", "hero", char_id) in state:
+    elif any(f[0] == "has-talked" and f[2] == char_id for f in state if len(f) == 3):
         return dialogues.get("after_talk", "Yes? Do you need something else?")
     else:
         return dialogues.get("before_talk", "Hello.")
@@ -143,9 +143,16 @@ def translate_action(action, quest_data):
         return f"Execute {name} on " + ", ".join(arg_names)
 
 
-def find_player_location(state):
+def find_player_name(problem):
+    for obj, otype in problem.objects.items():
+        if otype == "player":
+            return obj
+    return "hero"  # fallback
+
+
+def find_player_location(state, player_name="hero"):
     for fact in state:
-        if len(fact) == 3 and fact[0] == "at" and fact[1] == "hero":
+        if len(fact) == 3 and fact[0] == "at" and fact[1] == player_name:
             return fact[2]
     return None
 
@@ -169,7 +176,9 @@ def play_quest(domain_path, pddl_path, json_path, show_pics=False):
     problem = Problem(pddl_path)
     with open(json_path, "r", encoding="utf-8") as f:
         quest_data = normalize_quest_data(json.load(f))
-        
+
+    player_name = find_player_name(problem)
+
     if show_pics:
         show_quest_image(json_path)
 
@@ -201,7 +210,7 @@ def play_quest(domain_path, pddl_path, json_path, show_pics=False):
             return True
 
         # Get current location
-        loc_id = find_player_location(state)
+        loc_id = find_player_location(state, player_name)
         if not loc_id:
             print(
                 color_text(
@@ -226,7 +235,7 @@ def play_quest(domain_path, pddl_path, json_path, show_pics=False):
                 len(fact) == 3
                 and fact[0] == "at"
                 and fact[2] == loc_id
-                and fact[1] != "hero"
+                and fact[1] != player_name
             ):
                 npcs_here.append(fact[1])
 
@@ -264,7 +273,7 @@ def play_quest(domain_path, pddl_path, json_path, show_pics=False):
         # Display Inventory
         inventory = []
         for fact in state:
-            if len(fact) == 3 and fact[0] == "has" and fact[1] == "hero":
+            if len(fact) == 3 and fact[0] == "has" and fact[1] == player_name:
                 inventory.append(fact[2])
 
         inventory_names = [get_obj_name(item, quest_data) for item in inventory]
