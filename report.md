@@ -8,7 +8,7 @@ Projekt dotyczy eksperymentalnej implementacji automatycznego generatora fabuł 
 - Oskar Kiliańczyk 151863
 - Wojciech Kot 151879
 - Stanisław Główczewski 151877
-- Kacper Dąbrowski #TODO
+- Kacper Dąbrowski 151521
 
 ### Podział pracy:
 - Oskar Kiliańczyk
@@ -28,8 +28,9 @@ Projekt dotyczy eksperymentalnej implementacji automatycznego generatora fabuł 
   - stworzenie nowego questu, wykorzystując alternatywny model
   - główne prace nad raportem
 - Kacper Dąbrowski
-  - stworzenie domeny pddl (czyli podjęcie bardzo istotnych decyzji architektonicznych na samym początku projektu!)
-  - motywacja reszty do pracy, tym że ktoś zaczął :) #TODO - opisz se coś
+  - stworzenie domeny pddl
+  - testowanie działania domeny na ręcznie zbudowanych fabułach
+  - próby generowania fabuł w opraciu o proste prompty
   - tworzenie i testowanie nowych fabuł
 
 
