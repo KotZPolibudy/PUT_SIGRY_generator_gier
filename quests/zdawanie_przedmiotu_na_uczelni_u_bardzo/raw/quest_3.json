@@ -1,0 +1,50 @@
+{
+  "locations": {
+    "university_building": {
+      "name": "University Building",
+      "description": "A large, labyrinthine building filled with classrooms and offices.",
+      "image_prompt": "fantasy university campus, academic buildings"
+    },
+    "classroom": {
+      "name": "Professor Riddle's Classroom",
+      "description": "An imposing classroom with old-fashioned furniture and dusty shelves.",
+      "image_prompt": "aged magic professor classroom, fantasy art"
+    }
+  },
+  "items": {
+    "final_exam_paper": {
+      "name": "Final Exam Paper for Professor Riddle’s Class",
+      "description": "A carefully crafted exam paper designed to test Alyssa's understanding of the material.",
+      "image_prompt": "exam paper with magical formulas, fantasy style"
+    },
+    "key3": {
+      "name": "Final Exam Key",
+      "description": "A special key that grants access to Professor Riddle’s final exam room and its contents.",
+      "image_prompt": "magic final exam key, fantasy art"
+    }
+  },
+  "characters": {
+    "professor": {
+      "name": "Professor Riddle",
+      "description": "The now-senior professor who has accepted Alyssa as a student and is eager to see her succeed.",
+      "image_prompt": "elderly wizard teacher, old-fashioned clothes, glasses",
+      "dialogues": {
+        "before_talk": "Riddle: You must solve this riddle before I grant you access to my final exam!",
+        "after_talk": "Alyssa: Professor, I have prepared for months. Do you think I am ready?",
+        "after_satisfied": "Riddle: Excellent work! Here is the key to your future.",
+        "hostile": "Riddle: Guards! This student must be tested!"
+      }
+    },
+    "alyssa": {
+      "name": "Alyssa",
+      "description": "The persistent and studious student who has been granted access to Professor Riddle's final exam room.",
+      "image_prompt": "determined student, looking at books with focus in her eyes",
+      "dialogues": {
+        "before_talk": "Alyssa: Thank you, professor. I am ready for the test now!",
+        "after_talk": "Alyssa: Professor, I have studied hard and completed the exam paper to your specifications.",
+        "after_satisfied": "Alyssa: Thank you! You see how much I have learned from your teachings.",
+        "hostile": "Riddle: Not yet, student. You must do better!"
+      }
+    }
+  }
+}

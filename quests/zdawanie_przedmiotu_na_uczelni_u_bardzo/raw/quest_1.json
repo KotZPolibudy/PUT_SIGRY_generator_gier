@@ -1,0 +1,45 @@
+{
+  "locations": {
+    "university_building": {
+      "name": "University Building",
+      "description": "A large, labyrinthine building filled with classrooms and offices.",
+      "image_prompt": "fantasy university campus, academic buildings"
+    }
+  },
+  "items": {
+    "textbook": {
+      "name": "Advanced Textbook on Magic",
+      "description": "A thick of leather-bound books containing intricate magic formulas.",
+      "image_prompt": "advanced magic textbook, fantasy style"
+    },
+    "key1": {
+      "name": "University Campus Key",
+      "description": "A key that grants access to various areas of the university building and its classrooms.",
+      "image_prompt": "university campus key, fantasy art"
+    }
+  },
+  "characters": {
+    "professor": {
+      "name": "Professor Riddle",
+      "description": "A notoriously difficult professor known for his cryptic lectures and challenging exams.",
+      "image_prompt": "elderly wizard teacher, old-fashioned clothes, glasses",
+      "dialogues": {
+        "before_talk": "Riddle: Welcome, student. You must earn the right to enter my classroom by solving these riddles.",
+        "after_talk": "Riddle: Not yet ready? Go to the bookstore and find a textbook on magic.",
+        "after_satisfied": "Riddle: Excellent work! Here is your key to the university building.",
+        "hostile": "Riddle: Offender! Guards, stop this student!"
+      }
+    },
+    "alyssa": {
+      "name": "Alyssa",
+      "description": "The eager and determined student seeking knowledge from Professor Riddle.",
+      "image_prompt": "student looking at books, determination in her eyes",
+      "dialogues": {
+        "before_talk": "Alyssa: Thank you for the key, professor. I will continue my studies now.",
+        "after_talk": "Alyssa: I have a textbook to find and riddles to solve!",
+        "after_satisfied": "Alyssa: Thank you! With the key I can enter your classroom now!",
+        "hostile": "Riddle: Not yet, Alyssa. You must do better!"
+      }
+    }
+  }
+}

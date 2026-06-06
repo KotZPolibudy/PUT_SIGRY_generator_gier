@@ -33,7 +33,6 @@ def supports_color():
     return supported_platform and is_a_tty
 
 
-# Toggle color based on support
 USE_COLOR = supports_color()
 
 
@@ -41,6 +40,51 @@ def color_text(text, color):
     if USE_COLOR:
         return f"{color}{text}{COLOR_RESET}"
     return text
+
+
+def normalize_quest_data(quest_data):
+    if not isinstance(quest_data, dict):
+        return quest_data
+    
+    import re
+    def clean_id(text):
+        text = text.lower()
+        pl_chars = str.maketrans("ąęćłńóśźż", "aeclnoszz")
+        text = text.translate(pl_chars)
+        text = re.sub(r'[^a-z0-9_]+', '_', text)
+        return text.strip('_')
+
+    for key in ["locations", "items", "characters"]:
+        if key in quest_data:
+            val = quest_data[key]
+            if isinstance(val, list):
+                new_dict = {}
+                for item in val:
+                    if isinstance(item, dict):
+                        item_id = None
+                        for id_key in ["id", "key", "loc_id", "item_id", "char_id", "quest_id"]:
+                            if id_key in item:
+                                item_id = str(item[id_key]).strip()
+                                break
+                        if not item_id:
+                            for k in item.keys():
+                                if k.endswith("_id"):
+                                    item_id = str(item[k]).strip()
+                                    break
+                        if not item_id and "name" in item:
+                            item_id = clean_id(item["name"])
+                        if not item_id:
+                            for k, v in item.items():
+                                if isinstance(v, str) and len(v) < 30:
+                                    item_id = clean_id(v)
+                                    break
+                        if not item_id:
+                            item_id = f"unknown_{len(new_dict)}"
+                        new_dict[item_id] = item
+                    elif isinstance(item, str):
+                        new_dict[item] = {"name": item, "description": ""}
+                quest_data[key] = new_dict
+    return quest_data
 
 
 def get_obj_name(obj_id, quest_data):
@@ -124,7 +168,7 @@ def play_quest(domain_path, pddl_path, json_path, show_pics=False):
     # Load Problem & JSON
     problem = Problem(pddl_path)
     with open(json_path, "r", encoding="utf-8") as f:
-        quest_data = json.load(f)
+        quest_data = normalize_quest_data(json.load(f))
         
     if show_pics:
         show_quest_image(json_path)

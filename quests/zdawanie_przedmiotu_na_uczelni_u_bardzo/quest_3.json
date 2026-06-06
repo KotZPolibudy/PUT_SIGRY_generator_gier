@@ -1,0 +1,47 @@
+{
+  "locations": {
+    "room-with-secret-object": {
+      "name": "Secret Room",
+      "description": "A room filled with ancient artifacts and mysterious symbols. The door is heavily guarded, but there seems to be an exit through a hidden passage.",
+      "image_prompt": "fantasy secret room, arcane symbols on walls"
+    },
+    "forbidden-room-object-of-interest": {
+      "name": "Forbidden Room Object",
+      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
+      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    }
+  },
+  "items": {
+    "forbidden-room-object-of-interest": {
+      "name": "Object of Interest",
+      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
+      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden the Apprentice",
+      "description": "A brave young student looking to complete his studies and prove himself. He is still in a state of immaturity but has great potential.",
+      "image_prompt": "fantasy young student, looks like he's about to embark on a quest"
+    },
+    "professor": {
+      "name": "Professor Zephyr",
+      "description": "A renowned professor who teaches the most arcane and dangerous magic. His lectures are captivating but his students fear him.",
+      "image_prompt": "elderly professor, stern expression, mustache",
+      "dialogues": {
+        "before_talk": "Prof. Zephyr: Alden, I've decided to give you a task of utmost importance. But first, we need to get into the secret room in the basement.",
+        "after_talk": "Prof. Zephyr: What did you expect? The only way is through that locked door at the end of this corridor.",
+        "after_satisfied": "Prof. Zephyr: Finally, your loyalty has not been misplaced. Here's the key I promised.",
+        "hostile": "Prof. Zephyr: Alden! You've managed to sneak into my secret room? What are you planning to do with that?"
+      }
+    },
+    "forbidden_room_object_of_interest": {
+      "name": "Object of Interest",
+      "description": "A shimmering object with intricate magical properties. It has the power to grant knowledge and insight into forbidden arts.",
+      "image_prompt": "shiny mysterious object, glowing and enigmatic"
+    }
+  },
+  "pddl_domain_file_path": "./domain.pddl",
+  "solvable": false,
+  "expected_plan": []
+}

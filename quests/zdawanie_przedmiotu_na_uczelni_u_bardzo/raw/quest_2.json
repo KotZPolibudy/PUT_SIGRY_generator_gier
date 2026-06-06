@@ -1,0 +1,45 @@
+{
+  "locations": {
+    "university_building": {
+      "name": "University Building",
+      "description": "A large, labyrinthine building filled with classrooms and offices.",
+      "image_prompt": "fantasy university campus, academic buildings"
+    },
+    "classroom": {
+      "name": "Professor Riddle's Classroom",
+      "description": "An imposing classroom with old-fashioned furniture and dusty shelves.",
+      "image_prompt": "aged magic professor classroom, fantasy art"
+    }
+  },
+  "items": {
+    "key2": {
+      "name": "Classroom Key",
+      "description": "A key that opens the door to Professor Riddle's highly-secured classroom.",
+      "image_prompt": "magic classroom door key, fantasy style"
+    }
+  },
+  "characters": {
+    "professor": {
+      "name": "Professor Riddle",
+      "description": "The same difficult professor from the previous quest, now more frustrated by Alyssa’s persistence.",
+      "image_prompt": "elderly wizard teacher, old-fashioned clothes, glasses",
+      "dialogues": {
+        "before_talk": "Riddle: You must solve this riddle before I grant you access to my classroom!",
+        "after_talk": "Alyssa: Professor, I found a textbook on magic. Do you have any recommendations for further study?",
+        "after_satisfied": "Riddle: Excellent work! Here is the key to your new home.",
+        "hostile": "Riddle: Guards! This student must be punished!"
+      }
+    },
+    "alyssa": {
+      "name": "Alyssa",
+      "description": "The persistent and studious student who wants access to Professor Riddle's classroom.",
+      "image_prompt": "determined student, looking at books with focus in her eyes",
+      "dialogues": {
+        "before_talk": "Alyssa: Thank you, professor. I will continue my studies now.",
+        "after_talk": "Alyssa: I have been studying magic for months and found a textbook that looks relevant to your work!",
+        "after_satisfied": "Alyssa: Thank you! I am eager to learn more from your expertise in magic.",
+        "hostile": "Riddle: Not yet, student. You must do better!"
+      }
+    }
+  }
+}

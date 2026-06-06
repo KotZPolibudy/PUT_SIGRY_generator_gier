@@ -85,6 +85,51 @@ def generate_image(pipe, prompt, output_path):
     image.save(output_path)
 
 
+def normalize_quest_data(quest_data):
+    if not isinstance(quest_data, dict):
+        return quest_data
+    
+    import re
+    def clean_id(text):
+        text = text.lower()
+        pl_chars = str.maketrans("ąęćłńóśźż", "aeclnoszz")
+        text = text.translate(pl_chars)
+        text = re.sub(r'[^a-z0-9_]+', '_', text)
+        return text.strip('_')
+
+    for key in ["locations", "items", "characters"]:
+        if key in quest_data:
+            val = quest_data[key]
+            if isinstance(val, list):
+                new_dict = {}
+                for item in val:
+                    if isinstance(item, dict):
+                        item_id = None
+                        for id_key in ["id", "key", "loc_id", "item_id", "char_id", "quest_id"]:
+                            if id_key in item:
+                                item_id = str(item[id_key]).strip()
+                                break
+                        if not item_id:
+                            for k in item.keys():
+                                if k.endswith("_id"):
+                                    item_id = str(item[k]).strip()
+                                    break
+                        if not item_id and "name" in item:
+                            item_id = clean_id(item["name"])
+                        if not item_id:
+                            for k, v in item.items():
+                                if isinstance(v, str) and len(v) < 30:
+                                    item_id = clean_id(v)
+                                    break
+                        if not item_id:
+                            item_id = f"unknown_{len(new_dict)}"
+                        new_dict[item_id] = item
+                    elif isinstance(item, str):
+                        new_dict[item] = {"name": item, "description": ""}
+                quest_data[key] = new_dict
+    return quest_data
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--story_name", required=True, help="Folder inside quests/")
@@ -109,7 +154,7 @@ def main():
         print(f"Processing {quest_file.name}")
 
         with open(quest_file, "r", encoding="utf-8") as f:
-            quest_data = json.load(f)
+            quest_data = normalize_quest_data(json.load(f))
 
         prompt = build_scene_prompt(quest_data)
         quest_number = quest_file.stem.split("_")[1]

@@ -63,7 +63,52 @@ def get_campaign_slug(prompt):
         slug = '_'.join(parts[:6])
     return slug
 
+def normalize_quest_data(quest_data):
+    if not isinstance(quest_data, dict):
+        return quest_data
+    
+    import re
+    def clean_id(text):
+        text = text.lower()
+        pl_chars = str.maketrans("ąęćłńóśźż", "aeclnoszz")
+        text = text.translate(pl_chars)
+        text = re.sub(r'[^a-z0-9_]+', '_', text)
+        return text.strip('_')
+
+    for key in ["locations", "items", "characters"]:
+        if key in quest_data:
+            val = quest_data[key]
+            if isinstance(val, list):
+                new_dict = {}
+                for item in val:
+                    if isinstance(item, dict):
+                        item_id = None
+                        for id_key in ["id", "key", "loc_id", "item_id", "char_id", "quest_id"]:
+                            if id_key in item:
+                                item_id = str(item[id_key]).strip()
+                                break
+                        if not item_id:
+                            for k in item.keys():
+                                if k.endswith("_id"):
+                                    item_id = str(item[k]).strip()
+                                    break
+                        if not item_id and "name" in item:
+                            item_id = clean_id(item["name"])
+                        if not item_id:
+                            for k, v in item.items():
+                                if isinstance(v, str) and len(v) < 30:
+                                    item_id = clean_id(v)
+                                    break
+                        if not item_id:
+                            item_id = f"unknown_{len(new_dict)}"
+                        new_dict[item_id] = item
+                    elif isinstance(item, str):
+                        new_dict[item] = {"name": item, "description": ""}
+                quest_data[key] = new_dict
+    return quest_data
+
 def auto_repair_pddl(pddl_text, quest_data, domain):
+    quest_data = normalize_quest_data(quest_data)
     def flatten_nested_symbols(expr):
         if isinstance(expr, list):
             if len(expr) == 1 and isinstance(expr[0], str):
@@ -125,6 +170,16 @@ def auto_repair_pddl(pddl_text, quest_data, domain):
             return pddl_text
             
         tree = flatten_nested_symbols(tree)
+        
+        if player_name != "hero":
+            def rename_symbol(expr, old_name, new_name):
+                if isinstance(expr, list):
+                    return [rename_symbol(x, old_name, new_name) for x in expr]
+                if isinstance(expr, str) and expr == old_name:
+                    return new_name
+                return expr
+            tree = rename_symbol(tree, "hero", player_name)
+            
         tree = fix_malformed_predicates(tree, player_name)
             
         # Find :objects block
@@ -142,31 +197,63 @@ def auto_repair_pddl(pddl_text, quest_data, domain):
         objects_item = tree[objects_idx]
         parsed_objs = parse_typed_list(objects_item[1:])
         
+        # Align PDDL object names with JSON keys
+        json_keys = set()
+        for cat in ["locations", "items", "characters"]:
+            if cat in quest_data:
+                json_keys.update(quest_data[cat].keys())
+                
+        declared_pddl_objs = {obj for obj, _ in parsed_objs}
+        renames = {}
+        for obj, otype in parsed_objs:
+            if obj not in json_keys and obj not in [player_name, 'hero', 'player']:
+                matches = [k for k in json_keys if (k in obj or obj in k) and k not in declared_pddl_objs]
+                if len(matches) == 1:
+                    renames[obj] = matches[0]
+                elif len(matches) > 1:
+                    closest = min(matches, key=lambda x: abs(len(x) - len(obj)))
+                    renames[obj] = closest
+        
+        if renames:
+            def rename_symbol(expr, old_name, new_name):
+                if isinstance(expr, list):
+                    return [rename_symbol(x, old_name, new_name) for x in expr]
+                if isinstance(expr, str) and expr == old_name:
+                    return new_name
+                return expr
+            for old_n, new_n in renames.items():
+                print(f"Auto-aligning PDDL object '{old_n}' -> JSON key '{new_n}'")
+                tree = rename_symbol(tree, old_n, new_n)
+                
+            # Re-parse objects after renaming
+            objects_item = tree[objects_idx]
+            parsed_objs = parse_typed_list(objects_item[1:])
+        
         # Clean character -> npc/player and refine types from JSON
         fixed_objs = []
         for obj, otype in parsed_objs:
-            if otype in ["character", "object"]:
-                refined_type = None
-                if "locations" in quest_data and obj in quest_data["locations"]:
-                    refined_type = "location"
-                elif "items" in quest_data and obj in quest_data["items"]:
-                    refined_type = "item"
-                elif "characters" in quest_data and obj in quest_data["characters"]:
-                    char_info = quest_data["characters"][obj]
-                    if obj in ["hero", "player", "biographer"] or "player" in char_info.get("description", "").lower() or "biographer" in char_info.get("description", "").lower():
-                        refined_type = "player"
-                    else:
-                        refined_type = "npc"
-                
-                if refined_type:
-                    fixed_objs.append((obj, refined_type))
+            refined_type = None
+            if "locations" in quest_data and obj in quest_data["locations"]:
+                refined_type = "location"
+            elif "items" in quest_data and obj in quest_data["items"]:
+                refined_type = "item"
+            elif "characters" in quest_data and obj in quest_data["characters"]:
+                char_info = quest_data["characters"][obj]
+                if obj in ["hero", "player", "biographer"] or "player" in char_info.get("description", "").lower() or "biographer" in char_info.get("description", "").lower():
+                    refined_type = "player"
                 else:
+                    refined_type = "npc"
+            
+            if refined_type:
+                fixed_objs.append((obj, refined_type))
+            else:
+                if otype in ["character", "object"]:
                     if otype == "character":
                         fixed_objs.append((obj, "npc"))
                     else:
                         fixed_objs.append((obj, otype))
-            else:
-                fixed_objs.append((obj, otype))
+                else:
+                    fixed_objs.append((obj, otype))
                 
         declared_objs = {obj for obj, _ in fixed_objs}
         
@@ -308,6 +395,33 @@ def auto_repair_pddl(pddl_text, quest_data, domain):
                         locs.extend(objs)
                 if locs:
                     init_item.append(['at', player_name, locs[0]])
+            
+            # 4. Ensure all NPCs have a starting location
+            npcs = []
+            for obj, otype in fixed_objs:
+                if otype == "npc":
+                    npcs.append(obj)
+            for otype, objs in new_objects_by_type.items():
+                if otype == "npc":
+                    npcs.extend(objs)
+
+            locs = []
+            for obj, otype in fixed_objs:
+                if otype == "location":
+                    locs.append(obj)
+            for otype, objs in new_objects_by_type.items():
+                if otype == "location":
+                    locs.extend(objs)
+
+            if locs:
+                for npc in npcs:
+                    has_npc_at = False
+                    for fact in init_item[1:]:
+                        if isinstance(fact, list) and fact[0] == 'at' and len(fact) == 3 and fact[1] == npc:
+                            has_npc_at = True
+                            break
+                    if not has_npc_at:
+                        init_item.append(['at', npc, locs[0]])
         
         # Serialize back
         def serialize(t):
@@ -697,7 +811,7 @@ FEW-SHOT EXAMPLE OF A VALID QUEST DEFINITION:
     print(f"Story Summary: {story_data.get('story_summary', '')}\n")
     
     campaign_slug = get_campaign_slug(args.prompt)
-    campaign_dir = os.path.join(args.output_dir, campaign_slug)
+    campaign_dir = os.path.abspath(os.path.join(args.output_dir, campaign_slug))
     raw_dir = os.path.join(campaign_dir, "raw")
     
     os.makedirs(campaign_dir, exist_ok=True)
@@ -711,6 +825,10 @@ FEW-SHOT EXAMPLE OF A VALID QUEST DEFINITION:
     if not quests:
         print("Error: No quests found in response.")
         sys.exit(1)
+        
+    for q in quests:
+        if "quest_data" in q:
+            q["quest_data"] = normalize_quest_data(q["quest_data"])
         
     # Save raw backup first
     for q in quests:
@@ -809,7 +927,7 @@ Make sure that:
             try:
                 repaired_quest = json.loads(repair_response)
                 pddl_problem = repaired_quest.get("pddl_problem", pddl_problem)
-                quest_data = repaired_quest.get("quest_data", quest_data)
+                quest_data = normalize_quest_data(repaired_quest.get("quest_data", quest_data))
             except Exception as e:
                 print(f"Error parsing repair response as JSON: {e}")
                 # Try to extract JSON using regex if Ollama didn't return perfect JSON
