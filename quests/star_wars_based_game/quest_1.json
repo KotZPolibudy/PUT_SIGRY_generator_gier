@@ -1,0 +1,48 @@
+{
+  "locations": {
+    "village": {
+      "name": "Hero's Village",
+      "description": "A peaceful settlement with friendly villagers and a bustling marketplace.",
+      "image_prompt": "cozy fantasy village with stone cottages and cobblestone paths"
+    },
+    "merchant-stand": {
+      "name": "Frozen Merchant Stand",
+      "description": "A frozen merchant stand located at the entrance to the Frosty Peaks.",
+      "image_prompt": "icy merchant stand, frost-covered wooden stall"
+    },
+    "frozen-peak": {
+      "name": "Frosty Peaks Gate",
+      "description": "The icy gates guarding the entrance to the dangerous Frozen Peaks.",
+      "image_prompt": "frozen mountain pass with icy gates, fantasy art"
+    }
+  },
+  "items": {
+    "frost-key": {
+      "name": "Frost Key",
+      "description": "A magical key carved from ice that can open the frozen gates.",
+      "image_prompt": "intricate ice key with frost patterns"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young warrior seeking to rescue his mentor.",
+      "image_prompt": "young armored adventurer, fantasy art"
+    },
+    "mercenary": {
+      "name": "Ironfist Mercenary",
+      "description": "A seasoned mercenary who guards the merchant stand and holds the frost key.",
+      "image_prompt": "battle-hardened mercenary, heavy armor, fantasy style",
+      "dialogues": {
+        "before_talk": "Ironfist: You'll never pass the gates without my frost key. You have nothing I want.",
+        "after_talk": "Ironfist: You're still here? I'm not trading with a beggar.",
+        "after_satisfied": "Ironfist: Take this key, traveler. Your cause might just be just.",
+        "hostile": "Ironfist: Thief! I'll not let you pass with my key!"
+      }
+    }
+  },
+  "solvable": true,
+  "expected_plan": [
+    "(steal hero mercenary frost-key village)"
+  ]
+}

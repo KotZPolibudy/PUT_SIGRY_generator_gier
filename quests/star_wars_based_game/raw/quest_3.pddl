@@ -1,0 +1,15 @@
+(define (problem quest_3)
+  (:domain magic-world)
+  (:objects
+    hero - player
+    ??? - ???
+    ??? - ???
+    ??? - ???
+  )
+  (:init
+    ...
+  )
+  (:goal (and
+    ...
+  ))
+)

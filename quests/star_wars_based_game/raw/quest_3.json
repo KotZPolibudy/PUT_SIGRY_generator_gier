@@ -1,0 +1,28 @@
+{
+  "locations": {
+    "???": {
+      "name": "????",
+      "description": "????",
+      "image_prompt": "???"
+    }
+  },
+  "items": {
+    "???": {
+      "name": "????",
+      "description": "????",
+      "image_prompt": "????"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young warrior seeking to rescue his mentor.",
+      "image_prompt": "young armored adventurer, fantasy art"
+    },
+    "???": {
+      "name": "????",
+      "description": "????",
+      "image_prompt": "????"
+    }
+  }
+}

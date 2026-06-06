@@ -1,0 +1,43 @@
+{
+  "locations": {
+    "village": {
+      "name": "Hero's Village",
+      "description": "A peaceful settlement with friendly villagers and a bustling marketplace.",
+      "image_prompt": "cozy fantasy village with stone cottages and cobblestone paths"
+    },
+    "merchant-stand": {
+      "name": "Frozen Merchant Stand",
+      "description": "A frozen merchant stand located at the entrance to the Frosty Peaks.",
+      "image_prompt": "icy merchant stand, frost-covered wooden stall"
+    },
+    "frozen-peak": {
+      "name": "Frozen Peak",
+      "description": "The interior of the dangerous frozen peak with icy terrain.",
+      "image_prompt": "icy cavern with ice stalactites and crystal formations"
+    }
+  },
+  "items": {
+    "frost-key": {
+      "name": "Frost Key",
+      "description": "A magical key carved from ice that can open the frozen gates.",
+      "image_prompt": "intricate ice key with frost patterns"
+    },
+    "golem-core": {
+      "name": "Ice Golem Core",
+      "description": "The core power source that gives the golem its strength.",
+      "image_prompt": "glowing blue crystal core"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young warrior seeking to rescue his mentor.",
+      "image_prompt": "young armored adventurer, fantasy art"
+    },
+    "ice-golem": {
+      "name": "Ice Golem",
+      "description": "A massive construct of ice and snow that guards the peak.",
+      "image_prompt": "massive ice golem made of frozen water and snow"
+    }
+  }
+}

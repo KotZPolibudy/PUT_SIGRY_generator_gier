@@ -1,0 +1,54 @@
+{
+  "locations": {
+    "start": {
+      "name": "Starting Village",
+      "description": "A peaceful village where heroes begin their journey.",
+      "image_prompt": "peaceful fantasy village with cottages, green fields, sunny day"
+    },
+    "cave": {
+      "name": "Dark Cave",
+      "description": "A mysterious cave with dangerous inhabitants.",
+      "image_prompt": "dark rocky cave with stalactites, torch light, dangerous atmosphere"
+    },
+    "sanctuary": {
+      "name": "Priest Sanctuary",
+      "description": "A holy temple where relics are kept and guarded.",
+      "image_prompt": "holy temple interior with golden altar, religious symbols, peaceful light"
+    }
+  },
+  "items": {
+    "relic": {
+      "name": "Ancient Relic",
+      "description": "A powerful holy artifact that priests seek to protect.",
+      "image_prompt": "glowing golden artifact with mystical runes, ancient craftsmanship"
+    },
+    "ancient-key": {
+      "name": "Stone Key",
+      "description": "An old key that can unlock ancient doors and sanctuaries.",
+      "image_prompt": "worn stone key with intricate carvings, ancient metal texture"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave young warrior seeking to rescue his mentor.",
+      "image_prompt": "young armored adventurer, fantasy art"
+    },
+    "goblin": {
+      "name": "Goblin Guard",
+      "description": "A goblin who guards the ancient key in the cave.",
+      "image_prompt": "small green goblin with rusty weapon, cave guardian"
+    },
+    "priest": {
+      "name": "Priest of Light",
+      "description": "A holy priest who protects the ancient relic in the sanctuary.",
+      "image_prompt": "elderly priest in white robes with golden staff, holy expression"
+    }
+  },
+  "solvable": true,
+  "expected_plan": [
+    "(move hero start cave)",
+    "(pick-up hero relic cave)",
+    "(move hero cave sanctuary)"
+  ]
+}
