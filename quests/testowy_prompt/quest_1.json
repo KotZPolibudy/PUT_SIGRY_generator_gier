@@ -1,0 +1,46 @@
+{
+  "locations": {
+    "village": {
+      "name": "Village Square",
+      "description": "A bustling market square filled with vendors and townsfolk.",
+      "image_prompt": "fantasy village square, watercolor style"
+    },
+    "tower": {
+      "name": "Ancient Tower",
+      "description": "An imposing tower surrounded by thicklings, its door locked by an ancient key.",
+      "image_prompt": "dark stone tower gates, fantasy art"
+    }
+  },
+  "items": {
+    "potion": {
+      "name": "Magic Potion",
+      "description": "A bottle filled with glowing blue liquid that grants temporary invincibility.",
+      "image_prompt": "glowing blue potion bottle"
+    },
+    "key": {
+      "name": "Ancient Brass Key",
+      "description": "An old brass key designed to open the door of the ancient tower.",
+      "image_prompt": "old brass key, fantasy style"
+    }
+  },
+  "characters": {
+    "hero": {
+      "name": "Alden",
+      "description": "A brave apprentice searcher of lost relics.",
+      "image_prompt": "young adventurer, fantasy art"
+    },
+    "merchant": {
+      "name": "Garrick the Merchant",
+      "description": "A merchant who holds the tower key and can grant a magic potion in exchange for it.",
+      "image_prompt": "wealthy medieval merchant",
+      "dialogues": {
+        "before_talk": "Garrick: Bring me a potion and I will give you the key to the forbidden tower!",
+        "after_talk": "Garrick: Still looking for the magic potion? Go to the tavern.",
+        "after_satisfied": "Garrick: Wonderful! Here is your magic potion. Use it wisely!",
+        "hostile": "Garrick: Thief! Guards, help!"
+      }
+    }
+  },
+  "solvable": false,
+  "expected_plan": []
+}
