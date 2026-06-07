@@ -89,34 +89,6 @@ Ze względu na ograniczenia rozmiaru modelu `qwen2.5:3b`, mimo pętli naprawczej
 
 \* Ręczne w znaczeniu wymagające interwencji dewelopera, jednak wykonane za pomocą LLM'ów dostępnych w sieci o znacznie większych możliwościach niż lokalne, takich jak Gemini 3.5 Flash)
 
-
-## 5. Generowanie elementów graficznych
-
-W ramach części rozszerzonej projektu zaimplementowano moduł generowania ilustracji dla poszczególnych questów. Grafiki są tworzone automatycznie na podstawie opisów lokacji, postaci i przedmiotów zapisanych w plikach JSON.
-
-Do generacji wykorzystano model dyfuzyjny Stable Diffusion 1.5 (runwayml/stable-diffusion-v1-5) uruchamiany lokalnie przy użyciu biblioteki Diffusers oraz PyTorch. Dla każdego questa tworzony jest pojedynczy obraz przedstawiający główną scenę zadania.
-
-Prompt generowany jest automatycznie poprzez połączenie najważniejszych opisów postaci, lokacji i przedmiotów występujących w danym queście. Przykładowy prompt ma postać:
-```
-Fantasy RPG scene.
-
-Characters:
-A determined student trying to pass his project.
-A notoriously difficult professor.
-
-Location:
-A long, echoing corridor lined with notice boards.
-
-Objects:
-A heavy tome required by Professor Riddle.
-
-cinematic fantasy illustration, game concept art
-```
-
-Podczas implementacji napotkano ograniczenie modelu Stable Diffusion 1.5 wynikające z wykorzystania enkodera CLIP, który obsługuje maksymalnie 77 tokenów. Dłuższe prompty są automatycznie obcinane, co może prowadzić do utraty części informacji o scenie. Aby temu zapobiec, zaimplementowano mechanizm skracania opisów, pozostawiający jedynie najważniejsze informacje o postaciach, lokacjach i przedmiotach.
-
-Takie rozwiązanie pozwala automatycznie generować ilustracje dla dowolnej wygenerowanej kampanii, zwiększając atrakcyjność i immersję podczas odgrywania fabuły.
-
 ### Kampania 1: Uratowanie Zamarzającego Królestwa (odzyskanie_skradzionego_artefaktu_ksiegi_zywiolow)
 
 #### Quest 1: Entrance to the Volcano
@@ -197,7 +169,36 @@ Takie rozwiązanie pozwala automatycznie generować ilustracje dla dowolnej wyge
 
 ---
 
-## 5. Wpływ Modelu na Jakość Generowanych Fabuł
+## 5. Generowanie elementów graficznych
+
+W ramach części rozszerzonej projektu zaimplementowano moduł generowania ilustracji dla poszczególnych questów. Grafiki są tworzone automatycznie na podstawie opisów lokacji, postaci i przedmiotów zapisanych w plikach JSON.
+
+Do generacji wykorzystano model dyfuzyjny Stable Diffusion 1.5 (runwayml/stable-diffusion-v1-5) uruchamiany lokalnie przy użyciu biblioteki Diffusers oraz PyTorch. Dla każdego questa tworzony jest pojedynczy obraz przedstawiający główną scenę zadania.
+
+Prompt generowany jest automatycznie poprzez połączenie najważniejszych opisów postaci, lokacji i przedmiotów występujących w danym queście. Przykładowy prompt ma postać:
+```
+Fantasy RPG scene.
+
+Characters:
+A determined student trying to pass his project.
+A notoriously difficult professor.
+
+Location:
+A long, echoing corridor lined with notice boards.
+
+Objects:
+A heavy tome required by Professor Riddle.
+
+cinematic fantasy illustration, game concept art
+```
+
+Podczas implementacji napotkano ograniczenie modelu Stable Diffusion 1.5 wynikające z wykorzystania enkodera CLIP, który obsługuje maksymalnie 77 tokenów. Dłuższe prompty są automatycznie obcinane, co może prowadzić do utraty części informacji o scenie. Aby temu zapobiec, zaimplementowano mechanizm skracania opisów, pozostawiający jedynie najważniejsze informacje o postaciach, lokacjach i przedmiotach.
+
+Takie rozwiązanie pozwala automatycznie generować ilustracje dla dowolnej wygenerowanej kampanii, zwiększając atrakcyjność i immersję podczas odgrywania fabuły.
+
+---
+
+## 6. Wpływ Modelu na Jakość Generowanych Fabuł
 
 Kluczowym parametrem wpływającym na skuteczność generatora jest wybór modelu językowego. Większość eksperymentów przeprowadzono z domyślnym modelem `qwen2.5:3b`, jednak aby zbadać wpływ wielkości modelu na jakość generowanej fabuły przeprowadzono testy z modelem `qwen3.5:latest`.
 Zebrano kilka wniosków:
@@ -211,7 +212,7 @@ Obserwacja ta potwierdza, że jakość wyjścia jest silnie skorelowana z rozmia
 
 ---
 
-## 6. Kod Odgrywający Fabuły (Game Player)
+## 7. Kod Odgrywający Fabuły (Game Player)
 
 Program `play_game.py` umożliwia odtworzenie i rozegranie wybranej kampanii. Główne cechy silnika gry:
 
@@ -223,7 +224,7 @@ Program `play_game.py` umożliwia odtworzenie i rozegranie wybranej kampanii. G�
 
 ---
 
-## 7. Wady i Zalety Wybranej Metody
+## 8. Wady i Zalety Wybranej Metody
 
 ### Zalety:
 * **Lokalność i brak kosztów**: Całość działa w 100% lokalnie na maszynie użytkownika bez potrzeby posiadania płatnych kluczy API.
@@ -238,7 +239,7 @@ Program `play_game.py` umożliwia odtworzenie i rozegranie wybranej kampanii. G�
 
 ---
 
-## 8. Podsumowanie
+## 9. Podsumowanie
 W projekcie zaimplementowano działający system generacji questów łączący lokalny model LLM z formalizmem planowania STRIPS. Podejście sprawdza się jako proof-of-concept — generator jest w stanie produkować w miare spójne narracyjnie i logicznie weryfikowalne serie questów. Głównym ograniczeniem okazała się wysoka zawodność małych modeli językowych przy generacji strukturalnego PDDL: większość kampanii wymagała ręcznych poprawek po automatycznej pętli naprawczej. Jakość wyników jest silnie zależna od rozmiaru modelu — zastosowanie większych modeli znacząco zmniejsza liczbę błędów. STRIPS jako formalizm zapewnia solidną weryfikację wykonalności questów, jednak nie gwarantuje dramatycznej spójności fabuły — to pozostaje otwartym problemem wymagającym bardziej zaawansowanych metod planowania narracyjnego.
 Zastosowanie STRIPS i PDDL wprowadza silne ramy do projektu, które pozwalają uniknąć problemów spotykanych w "AI Dungeon" (jak te dotyczące zanikającego kontekstu), jednak ma też swoje wady w postaci "sztywności" i znacznego ograniczenia kreatywności i możliwości zarówno gracza jak i modeli generujących fabuły.
 
